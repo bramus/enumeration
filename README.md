@@ -265,6 +265,27 @@ class StatusCode extends ComposedEnumeration
 }
 ```
 
+## Utility Classes
+
+`bramus/enumeration` comes with 2 utility classes that it uses. Whilst you most likely don't need to use these directly, the might be of help:
+
+### `\Bramus\Enumeration\Helpers\Extractor`
+
+This class extracts constants/identifiers/values from `\Bramus\Enumeration\Enumeration` classes. It is used by `\Bramus\Enumeration\Enumeration` itself.
+
+### `\Bramus\Enumeration\Helpers\Generator`
+
+This class allows one to generate instances of `\Bramus\Enumeration\Enumeration` classes. Given the example `\Bramus\Http\StatusCodes\StatusCode` class from above, its usage might be something like this:
+
+```php
+use Bramus\Enumeration\Helpers\Generator;
+
+Generator::setNamespace('\\Bramus\\Http\\StatusCodes\\');
+
+Generator::generateStatusCode(); // Generates a random \Bramus\Http\StatusCodes\StatusCode instance
+Generator::generateStatusCode(200); // Generates a \Bramus\Http\StatusCodes\StatusCode instance with the value 200
+```
+
 ## Testing
 
 `bramus/enumeration` ships with unit tests using [PHPUnit](https://github.com/sebastianbergmann/phpunit/) `~8.0`.
