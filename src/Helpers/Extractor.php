@@ -35,8 +35,8 @@ class Extractor
 
 			// Composed Enumeration? Also include all constants from composed classes
 			if ($reflectionClass->isSubclassOf('Bramus\Enumeration\ComposedEnumeration')) {
-				foreach ($class::$classes as $class) {
-					$constants += self::extractConstants($class, $excludeDefault);
+				foreach ($class::$classes as $subClass) {
+					$constants += self::extractConstants($subClass, $excludeDefault);
 				}
 			}
 
