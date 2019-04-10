@@ -4,6 +4,8 @@ namespace Bramus\Enumeration\Helpers;
 
 class Extractor
 {
+	public static $cache = [];
+
 	/**
 	 * Extracts all constants from a given Enumeration.
 	 *
@@ -14,30 +16,41 @@ class Extractor
 	 */
 	final public static function extractConstants($class, $excludeDefault = true)
 	{
-		// Make sure we have an Enumeration
-		if (!is_subclass_of($class, 'Bramus\Enumeration\Enumeration')) {
-			throw new \InvalidArgumentException('Invalid Class ' . $class . ': It is not an Enumeration.');
+		// Result is cached
+		if (isset(self::$cache[$class])) {
+			$constants = self::$cache[$class];
 		}
 
-		// Set it up
-		$reflectionClass = new \ReflectionClass($class);
-		$classConstants = (new \ReflectionClass($class))->getConstants();
-		$constants = [];
-
-		// Composed Enumeration? Also include all constants from composed classes
-		if ($reflectionClass->isSubclassOf('Bramus\Enumeration\ComposedEnumeration')) {
-			foreach ($class::$classes as $class) {
-				$constants += self::extractConstants($class, $excludeDefault);
+		// Result is not cached
+		else {
+			// Make sure we have an Enumeration
+			if (!is_subclass_of($class, 'Bramus\Enumeration\Enumeration')) {
+				throw new \InvalidArgumentException('Invalid Class ' . $class . ': It is not an Enumeration.');
 			}
+
+			// Set it up
+			$reflectionClass = new \ReflectionClass($class);
+			$classConstants = (new \ReflectionClass($class))->getConstants();
+			$constants = [];
+
+			// Composed Enumeration? Also include all constants from composed classes
+			if ($reflectionClass->isSubclassOf('Bramus\Enumeration\ComposedEnumeration')) {
+				foreach ($class::$classes as $class) {
+					$constants += self::extractConstants($class, $excludeDefault);
+				}
+			}
+
+			// Include class constants
+			$constants += $classConstants;
+
+			// Cache it
+			self::$cache[$class] = $constants;
 		}
 
-		// Exclude default if requested
+		// Exclude default when requested
 		if ($excludeDefault) {
-			unset($classConstants['__DEFAULT']);
+			unset($constants['__DEFAULT']);
 		}
-
-		// Include class constants
-		$constants += $classConstants;
 
 		return $constants;
 	}
