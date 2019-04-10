@@ -8,7 +8,7 @@ Built by Bram(us) Van Damme _([https://www.bram.us](https://www.bram.us))_ and [
 
 ## Prerequisites/Requirements
 
-- PHP 7.0 or greater
+- PHP 7.2 or greater
 
 ## Installation
 
