@@ -90,13 +90,13 @@ abstract class Enumeration
 	/**
 	 * Lists all identifiers for this Enumeration.
 	 *
-	 * @param bool $excludeDefaults
+	 * @param bool $excludeDefault
 	 *
 	 * @return array
 	 */
-	public static function identifiers($excludeDefaults = true)
+	public static function identifiers($excludeDefault = true)
 	{
-		return Extractor::extractIdentifiers(get_called_class(), $excludeDefaults);
+		return Extractor::extractIdentifiers(get_called_class(), $excludeDefault);
 	}
 
 	/**
@@ -114,13 +114,13 @@ abstract class Enumeration
 	/**
 	 * Lists all values for this Enumeration.
 	 *
-	 * @param bool $excludeDefaults
+	 * @param bool $excludeDefault
 	 *
 	 * @return array
 	 */
-	public static function values($excludeDefaults = true)
+	public static function values($excludeDefault = true)
 	{
-		return Extractor::extractValues(get_called_class(), $excludeDefaults);
+		return Extractor::extractValues(get_called_class(), $excludeDefault);
 	}
 
 	/**
