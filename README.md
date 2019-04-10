@@ -282,9 +282,11 @@ use Bramus\Enumeration\Helpers\Generator;
 
 Generator::setNamespace('\\Bramus\\Http\\StatusCodes\\');
 
-Generator::generateStatusCode(); // Generates a random \Bramus\Http\StatusCodes\StatusCode instance
-Generator::generateStatusCode(200); // Generates a \Bramus\Http\StatusCodes\StatusCode instance with the value 200
+Generator::generateStatusCode(); // Generates a \Bramus\Http\StatusCodes\StatusCode instance with its default value
+Generator::generateStatusCode(404); // Generates a \Bramus\Http\StatusCodes\StatusCode instance with the value 404
 ```
+
+@note: In case the `Enumeration` has no `__DEFAULT` defined, `Generator::generate*` will return a random value.
 
 ## Testing
 

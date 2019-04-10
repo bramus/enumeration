@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Tests\Bramus\Enumeration\Examples\Helpers\Generator;
 use Tests\Bramus\Enumeration\Examples\StatusCode;
 use Tests\Bramus\Enumeration\Examples\Weekday;
+use Tests\Bramus\Enumeration\Examples\TrafficLight;
 
 /**
  * @internal
@@ -13,11 +14,19 @@ use Tests\Bramus\Enumeration\Examples\Weekday;
  */
 class GeneratorTest extends TestCase
 {
-	public function testRandom()
+	public function testDefault()
 	{
 		$generated = Generator::generateWeekday();
 		$this->assertInstanceOf(Weekday::class, $generated);
-		$this->assertContains($generated->getValue(), Weekday::values());
+		$this->assertEquals('MONDAY', $generated->getIdentifier());
+	}
+
+	public function testRandom()
+	{
+		$generated = Generator::generateTrafficLight();
+		$this->assertInstanceOf(TrafficLight::class, $generated);
+		$this->assertNotEquals(null, $generated->getValue());
+		$this->assertContains($generated->getValue(), TrafficLight::values());
 	}
 
 	public function testGivenValue()
