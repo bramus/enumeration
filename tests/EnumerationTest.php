@@ -42,6 +42,13 @@ class EnumerationTest extends TestCase
 		$this->assertEquals(1, (string) $instance);
 	}
 
+	public function testDefaultValue()
+	{
+		$instance = new Weekday();
+		$this->assertInstanceOf(Weekday::class, $instance);
+		$this->assertEquals(1, (string) $instance);
+	}
+
 	public function testIdentifiers()
 	{
 		$identifiers = Weekday::identifiers();

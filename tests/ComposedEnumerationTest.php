@@ -49,6 +49,13 @@ class ComposedEnumerationTest extends TestCase
 		$this->assertEquals(100, (string) $instance);
 	}
 
+	public function testDefaultValue()
+	{
+		$instance = new StatusCode();
+		$this->assertInstanceOf(StatusCode::class, $instance);
+		$this->assertEquals(200, (string) $instance);
+	}
+
 	public function testIdentifiers()
 	{
 		$identifiers = StatusCode::identifiers();

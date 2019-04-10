@@ -22,6 +22,11 @@ abstract class Enumeration
 	{
 		$class = get_called_class();
 
+		// No value given? Inject __DEFAULT
+		if (null === $value) {
+			$value = $class::__DEFAULT;
+		}
+
 		if (!$class::isValidValue($value)) {
 			throw new \InvalidArgumentException($value . ' is a not a valid value for the ' . $class . ' Enumeration. Allowed identifiers are ' . implode(', ', $class::identifiers()));
 		}

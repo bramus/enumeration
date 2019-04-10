@@ -41,7 +41,7 @@ class ExtractorTest extends TestCase
 
 		$this->assertEquals(1, $constants['MONDAY']);
 		$this->assertEquals(7, $constants['SUNDAY']);
-		$this->assertEquals(null, $constants['__DEFAULT']);
+		$this->assertEquals(1, $constants['__DEFAULT']);
 	}
 
 	public function testExtractIdentifiers()
@@ -87,7 +87,6 @@ class ExtractorTest extends TestCase
 
 		$this->assertContains(1, $values);
 		$this->assertContains(7, $values);
-		$this->assertContains(null, $values);
 	}
 
 	public function testInvalidArgument()

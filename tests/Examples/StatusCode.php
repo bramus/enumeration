@@ -6,6 +6,8 @@ use Bramus\Enumeration\ComposedEnumeration;
 
 class StatusCode extends ComposedEnumeration
 {
+	const __DEFAULT = 200;
+
 	public static $classes = [
 		'\Tests\Bramus\Enumeration\Examples\StatusCodes\Informal',
 		'\Tests\Bramus\Enumeration\Examples\StatusCodes\Success',

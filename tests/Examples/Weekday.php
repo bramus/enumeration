@@ -6,6 +6,8 @@ use Bramus\Enumeration\Enumeration;
 
 class Weekday extends Enumeration
 {
+	const __DEFAULT = 1;
+
 	const MONDAY = 1;
 	const TUESDAY = 2;
 	const WEDNESDAY = 3;

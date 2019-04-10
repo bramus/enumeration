@@ -220,6 +220,51 @@ StatusCode::isValidIdentifier('BROKEN');
 // ~> false
 ```
 
+### Default Values
+
+If you want, you can define a default value to use. Define it as a constant named `__DEFAULT` on your class and you're good to go:
+
+```php
+<?php
+
+use Bramus\Enumeration\Enumeration;
+
+class Weekday extends Enumeration
+{
+	const __DEFAULT = 1;
+
+	const MONDAY = 1;
+	const TUESDAY = 2;
+	…
+}
+```
+
+The default will be used when no value is passed into the constructor:
+
+```php
+$instance = new Weekday();
+
+// object(Weekday)#424 (2) {
+//  ["value":"Bramus\Enumeration\Enumeration":private]=>
+//  int(1)
+//  ["identifier":"Bramus\Enumeration\Enumeration":private]=>
+//  string(6) "MONDAY"
+//}
+```
+
+This works both for both the `Enumeration` and `ComposedEnumeration` classes:
+
+```php
+class StatusCode extends ComposedEnumeration
+{
+	const __DEFAULT = 200;
+
+	public static $classes = [
+		…
+	];
+}
+```
+
 ## Testing
 
 `bramus/enumeration` ships with unit tests using [PHPUnit](https://github.com/sebastianbergmann/phpunit/) `~8.0`.
