@@ -1,8 +1,8 @@
-# `bramus/enumeration` – Yet Another Enumeration Implementation for PHP
+# `bramus/enumeration`
 
 [![Build Status](https://img.shields.io/travis/bramus/enumeration.svg?style=flat-square)](http://travis-ci.org/bramus/enumeration) [![Source](http://img.shields.io/badge/source-bramus/enumeration-blue.svg?style=flat-square)](https://github.com/bramus/enumeration) [![Version](https://img.shields.io/packagist/v/bramus/enumeration.svg?style=flat-square)](https://packagist.org/packages/bramus/enumeration) [![Downloads](https://img.shields.io/packagist/dt/bramus/enumeration.svg?style=flat-square)](https://packagist.org/packages/bramus/enumeration/stats) [![License](https://img.shields.io/packagist/l/bramus/enumeration.svg?style=flat-square)](https://github.com/bramus/enumeration/blob/master/LICENSE)
 
-`bramus/enumeration` allows one to create both [singular enumerations](#singular-enumerations) and [composed enumerations](#composed-enumerations).
+`bramus/enumeration` is an Enumeration Implementation for PHP. It allows one to create both [singular enumerations](#singular-enumerations) and [composed enumerations](#composed-enumerations).
 
 Built by Bram(us) Van Damme _([https://www.bram.us](https://www.bram.us))_ and [Contributors](https://github.com/bramus/enumeration/graphs/contributors)
 
@@ -58,7 +58,7 @@ $instance->getIdentifier();
 // ~> '1'
 ```
 
-#### Concerting between values and identifiers
+#### Converting between values and identifiers
 
 ```php
 Weekday::toValue('MONDAY');
@@ -184,7 +184,7 @@ $instance->getIdentifier();
 // ~> '200'
 ```
 
-#### Concerting between values and identifiers
+#### Converting between values and identifiers
 
 ```php
 StatusCode::toValue('OK');
@@ -267,11 +267,11 @@ class StatusCode extends ComposedEnumeration
 
 ## Utility Classes
 
-`bramus/enumeration` comes with 2 utility classes that it uses. Whilst you most likely don't need to use these directly, the might be of help:
+`bramus/enumeration` comes with 2 utility classes. Whilst you most likely don't need to use these directly, they might be of help:
 
 ### `\Bramus\Enumeration\Helpers\Extractor`
 
-This class extracts constants/identifiers/values from `\Bramus\Enumeration\Enumeration` classes. It is used by `\Bramus\Enumeration\Enumeration` itself.
+This class extracts constants/identifiers/values from `\Bramus\Enumeration\Enumeration` classes. It is used by `\Bramus\Enumeration\Enumeration` internally.
 
 ### `\Bramus\Enumeration\Helpers\Generator`
 
@@ -286,7 +286,7 @@ Generator::generateStatusCode(); // Generates a \Bramus\Http\StatusCodes\StatusC
 Generator::generateStatusCode(404); // Generates a \Bramus\Http\StatusCodes\StatusCode instance with the value 404
 ```
 
-@note: In case the `Enumeration` has no `__DEFAULT` defined, `Generator::generate*` will return a random value.
+@note: In case the `Enumeration` has no `__DEFAULT` _(e.g. it is `NULL`)_, calling `Generator::generate*` will return a random value for the Enumeration.
 
 ## Testing
 
