@@ -30,7 +30,7 @@ class Extractor
 
 			// Set it up
 			$reflectionClass = new \ReflectionClass($class);
-			$classConstants = (new \ReflectionClass($class))->getConstants();
+			$classConstants = $reflectionClass->getConstants();
 			$constants = [];
 
 			// Composed Enumeration? Also include all constants from composed classes
