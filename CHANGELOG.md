@@ -2,6 +2,10 @@
 
 ## 1.next – ????.??.??
 
+
+
+## 1.2 – 2019.05.13
+
 - Added: `::toSummary()`/`getSummary()` _(@bramus)_
 - Added: `::toDescription()`/`getDescription()` _(@bramus)_
 

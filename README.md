@@ -15,7 +15,7 @@ Built by Bram(us) Van Damme _([https://www.bram.us](https://www.bram.us))_ and [
 Installation is possible using Composer
 
 ```
-$ composer require bramus/enumeration ~1.1
+$ composer require bramus/enumeration ~1.2
 ```
 
 ## Usage
