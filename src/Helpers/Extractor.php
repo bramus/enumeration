@@ -2,6 +2,8 @@
 
 namespace Bramus\Enumeration\Helpers;
 
+use Bramus\Reflection\ReflectionClass;
+
 class Extractor
 {
 	public static $cache = [];
@@ -14,7 +16,7 @@ class Extractor
 	 *
 	 * @return array
 	 */
-	final public static function extractConstants($class, $excludeDefault = true)
+	final public static function extractReflectionClassConstants($class, $excludeDefault = true)
 	{
 		// Result is cached
 		if (isset(self::$cache[$class])) {
@@ -29,14 +31,14 @@ class Extractor
 			}
 
 			// Set it up
-			$reflectionClass = new \ReflectionClass($class);
+			$reflectionClass = new ReflectionClass($class);
 			$classConstants = $reflectionClass->getConstants();
 			$constants = [];
 
 			// Composed Enumeration? Also include all constants from composed classes
 			if ($reflectionClass->isSubclassOf('Bramus\Enumeration\ComposedEnumeration')) {
 				foreach ($class::$classes as $subClass) {
-					$constants += self::extractConstants($subClass, true);
+					$constants += self::extractReflectionClassConstants($subClass, true);
 				}
 			}
 
@@ -53,6 +55,26 @@ class Extractor
 		}
 
 		return $constants;
+	}
+
+	/**
+	 * Extracts all constants from a given Enumeration.
+	 *
+	 * @param string $class
+	 * @param bool   $excludeDefault
+	 *
+	 * @return array
+	 */
+	final public static function extractConstants($class, $excludeDefault = true)
+	{
+		$constants = self::extractReflectionClassConstants($class, $excludeDefault);
+
+		$toReturn = [];
+		foreach ($constants as $identifier => $object) {
+			$toReturn[$identifier] = $object->getValue();
+		}
+
+		return $toReturn;
 	}
 
 	/**
