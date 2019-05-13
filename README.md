@@ -265,6 +265,55 @@ class StatusCode extends ComposedEnumeration
 }
 ```
 
+### Summaries and Descriptions
+
+When defining [DocBlocks](https://docs.phpdoc.org/references/phpdoc/basic-syntax.html) to go with your enumeration constants, you can get its summary and description using the `getSummary()` and `getDescription()` methods respectively.
+
+```php
+<?php
+
+use Bramus\Enumeration\Enumeration;
+
+class Weekday extends Enumeration
+{
+	/**
+	 * Monday.
+	 *
+	 * The first day of the week.
+	 */
+	const MONDAY = 1;
+
+	//
+}
+```
+
+```php
+$instance = new Weekday(1);
+
+$instance->getSummary();
+// ~> 'Monday.'
+
+$instance->getDescription();
+// ~> 'The first day of the week.'
+```
+
+Static methods to fetching these are also available. For each their only argument is a valid Enumeration value or a `Bramus\Enumeration\Enumeration` instance:
+
+```php
+Weekday::toSummary(Weekday::MONDAY);
+// ~> 'Monday.'
+
+Weekday::toSummary($instance);
+// ~> 'Monday.'
+
+Weekday::toDescription(Weekday::MONDAY);
+// ~> 'The first day of the week.'
+
+Weekday::toDescription($instance);
+// ~> 'The first day of the week.'
+```
+
+
 ## Utility Classes
 
 `bramus/enumeration` comes with 2 utility classes. Whilst you most likely don't need to use these directly, they might be of help:
