@@ -3,6 +3,7 @@
 namespace Tests\Bramus\Enumeration;
 
 use PHPUnit\Framework\TestCase;
+use Tests\Bramus\Enumeration\Examples\TrafficLight;
 use Tests\Bramus\Enumeration\Examples\Weekday;
 
 /**
@@ -103,5 +104,59 @@ class EnumerationTest extends TestCase
 	{
 		$instance = new Weekday(Weekday::MONDAY);
 		$this->assertEquals(1, Weekday::toValue($instance));
+	}
+
+	public function testGetSummary()
+	{
+		$instance = new Weekday(Weekday::MONDAY);
+		$this->assertEquals('Monday.', $instance->getSummary());
+	}
+
+	public function testToSummary()
+	{
+		$this->assertEquals('Monday.', Weekday::toSummary(Weekday::MONDAY));
+	}
+
+	public function testToSummaryWithInstance()
+	{
+		$instance = new Weekday(Weekday::MONDAY);
+		$this->assertEquals('Monday.', Weekday::toSummary($instance));
+	}
+
+	public function testToSummaryForDefault()
+	{
+		$this->assertEquals('Monday.', Weekday::toSummary(new Weekday()));
+	}
+
+	public function testToSummaryForEnumerationWithNoComments()
+	{
+		$this->assertEquals('', TrafficLight::toSummary(TrafficLight::RED));
+	}
+
+	public function testGetDescription()
+	{
+		$instance = new Weekday(Weekday::MONDAY);
+		$this->assertEquals('The first day of the week', $instance->getDescription());
+	}
+
+	public function testToDescription()
+	{
+		$this->assertEquals('The first day of the week', Weekday::toDescription(Weekday::MONDAY));
+	}
+
+	public function testToDescriptionWithInstance()
+	{
+		$instance = new Weekday(Weekday::MONDAY);
+		$this->assertEquals('The first day of the week', Weekday::toDescription($instance));
+	}
+
+	public function testToDescriptionForDefault()
+	{
+		$this->assertEquals('The first day of the week', Weekday::toDescription(new Weekday()));
+	}
+
+	public function testToDescriptionForEnumerationWithNoComments()
+	{
+		$this->assertEquals('', TrafficLight::toDescription(TrafficLight::RED));
 	}
 }

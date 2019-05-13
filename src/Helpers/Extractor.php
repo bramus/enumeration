@@ -106,4 +106,44 @@ class Extractor
 
 		return array_values($constants);
 	}
+
+	/**
+	 * Extracts all summaries from a given Enumeration.
+	 *
+	 * @param string $class
+	 * @param bool   $excludeDefault
+	 *
+	 * @return array
+	 */
+	final public static function extractSummaries($class, $excludeDefault = true)
+	{
+		$constants = self::extractReflectionClassConstants($class, $excludeDefault);
+
+		$toReturn = [];
+		foreach ($constants as $identifier => $object) {
+			$toReturn[$identifier] = $object->getSummary();
+		}
+
+		return $toReturn;
+	}
+
+	/**
+	 * Extracts all descriptions from a given Enumeration.
+	 *
+	 * @param string $class
+	 * @param bool   $excludeDefault
+	 *
+	 * @return array
+	 */
+	final public static function extractDescriptions($class, $excludeDefault = true)
+	{
+		$constants = self::extractReflectionClassConstants($class, $excludeDefault);
+
+		$toReturn = [];
+		foreach ($constants as $identifier => $object) {
+			$toReturn[$identifier] = $object->getDescription();
+		}
+
+		return $toReturn;
+	}
 }

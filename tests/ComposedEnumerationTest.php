@@ -111,4 +111,34 @@ class ComposedEnumerationTest extends TestCase
 	{
 		$this->assertEquals(100, StatusCode::toValue(new StatusCode(100)));
 	}
+
+	public function testToSummary()
+	{
+		$this->assertEquals('The initial part of a request has been received and has not yet been rejected by the server. The server intends to send a final response after the request has been fully received and acted upon.', StatusCode::toSummary(100));
+	}
+
+	public function testToSummaryWithInstance()
+	{
+		$this->assertEquals('The initial part of a request has been received and has not yet been rejected by the server. The server intends to send a final response after the request has been fully received and acted upon.', StatusCode::toSummary(new StatusCode(100)));
+	}
+
+	public function testToSummaryForDefault()
+	{
+		$this->assertEquals('The request has succeeded.', StatusCode::toSummary(new StatusCode()));
+	}
+
+	public function testToDescription()
+	{
+		$this->assertEquals("When the request contains an Expect header field that includes a 100-continue expectation, the 100 response indicates that the server wishes to receive the request payload body. The client ought to continue sending the request and discard the 100 response.\nIf the request did not contain an Expect header field containing the 100-continue expectation, the client can simply discard this interim response.", StatusCode::toDescription(100));
+	}
+
+	public function testToDescriptionWithInstance()
+	{
+		$this->assertEquals("When the request contains an Expect header field that includes a 100-continue expectation, the 100 response indicates that the server wishes to receive the request payload body. The client ought to continue sending the request and discard the 100 response.\nIf the request did not contain an Expect header field containing the 100-continue expectation, the client can simply discard this interim response.", StatusCode::toDescription(new StatusCode(100)));
+	}
+
+	public function testToDescriptionForDefault()
+	{
+		$this->assertEquals("The payload sent in a 200 response depends on the request method. For the methods defined by this specification, the intended meaning of the payload can be summarized as:\n	- GET a representation of the target resource\n	- HEAD the same representation as GET, but without the representation data\n	- POST a representation of the status of, or results obtained from, the action;\n	- PUT DELETE a representation of the status of the action;\n	- OPTIONS a representation of the communications options;\n	- TRACE a representation of the request message as received by the end server.\nAside from responses to CONNECT, a 200 response always has a payload, though an origin server MAY generate a payload body of zero length. If no payload is desired, an origin server ought to send 204 No Content instead. For CONNECT, no payload is allowed because the successful result is a tunnel, which begins immediately after the 200 response header section.\nA 200 response is cacheable by default; i.e., unless otherwise indicated by the method definition or explicit cache controls.", StatusCode::toDescription(new StatusCode()));
+	}
 }

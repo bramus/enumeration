@@ -12,6 +12,8 @@ abstract class Enumeration
 
 	private $value;
 	private $identifier;
+	private $summary;
+	private $description;
 
 	/**
 	 * Creates a new instance and validates the given value along with that.
@@ -33,6 +35,8 @@ abstract class Enumeration
 
 		$this->value = $value;
 		$this->identifier = $class::toIdentifier($this->value);
+		$this->summary = $class::toSummary($this->value);
+		$this->description = $class::toDescription($this->value);
 	}
 
 	/**
@@ -85,6 +89,26 @@ abstract class Enumeration
 	public function getValue()
 	{
 		return $this->value;
+	}
+
+	/**
+	 * Returns the summary.
+	 *
+	 * @return mixed
+	 */
+	public function getSummary()
+	{
+		return $this->summary;
+	}
+
+	/**
+	 * Returns the description.
+	 *
+	 * @return mixed
+	 */
+	public function getDescription()
+	{
+		return $this->description;
 	}
 
 	/**
@@ -185,5 +209,55 @@ abstract class Enumeration
 
 		// Return it
 		return $constants[$identifier];
+	}
+
+	/**
+	 * Gets the summary for an identifier.
+	 *
+	 * @param string $identifier
+	 * @param mixed  $value
+	 *
+	 * @return mixed
+	 */
+	final public static function toSummary($value)
+	{
+		// It's an Enumeration? Call getSummary()
+		if (is_a($value, self::class)) {
+			return $value->getSummary();
+		}
+
+		// Convert $value to $identifier
+		$identifier = self::toIdentifier($value);
+
+		// Extract all summaries
+		$summaries = Extractor::extractSummaries(static::class);
+
+		// Return it
+		return $summaries[$identifier];
+	}
+
+	/**
+	 * Gets the description for an identifier.
+	 *
+	 * @param string $identifier
+	 * @param mixed  $value
+	 *
+	 * @return mixed
+	 */
+	final public static function toDescription($value)
+	{
+		// It's an Enumeration? Call getDescription()
+		if (is_a($value, self::class)) {
+			return $value->getDescription();
+		}
+
+		// Convert $value to $identifier
+		$identifier = self::toIdentifier($value);
+
+		// Extract all descriptions
+		$descriptions = Extractor::extractDescriptions(static::class);
+
+		// Return it
+		return $descriptions[$identifier];
 	}
 }
