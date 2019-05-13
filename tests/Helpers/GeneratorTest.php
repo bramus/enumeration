@@ -5,8 +5,8 @@ namespace Tests\Bramus\Enumeration\Helpers;
 use PHPUnit\Framework\TestCase;
 use Tests\Bramus\Enumeration\Examples\Helpers\Generator;
 use Tests\Bramus\Enumeration\Examples\StatusCode;
-use Tests\Bramus\Enumeration\Examples\Weekday;
 use Tests\Bramus\Enumeration\Examples\TrafficLight;
+use Tests\Bramus\Enumeration\Examples\Weekday;
 
 /**
  * @internal

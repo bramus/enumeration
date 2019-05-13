@@ -45,11 +45,11 @@ class Generator
 
 			// No specific value is requested, return the default (if set) or a random one
 			$values = $class::values();
-			if ($class::__DEFAULT !== null) {
+			if (null !== $class::__DEFAULT) {
 				return new $class();
-			} else {
-				return new $class($values[array_rand($values)]);
 			}
+
+			return new $class($values[array_rand($values)]);
 		}
 
 		throw new \InvalidArgumentException('Invalid method call ::' . $method);
