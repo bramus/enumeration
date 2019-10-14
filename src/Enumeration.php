@@ -252,6 +252,21 @@ abstract class Enumeration
 	}
 
 	/**
+	 * Lists all descriptions for this Enumeration.
+	 *
+	 * @param bool $excludeDefault
+	 *
+	 * @return array
+	 */
+	public static function descriptions($excludeDefault = true)
+	{
+		return array_combine(
+			Extractor::extractValues(get_called_class(), $excludeDefault),
+			Extractor::extractDescriptions(get_called_class(), $excludeDefault)
+		);
+	}
+
+	/**
 	 * Gets the description for an identifier.
 	 *
 	 * @param string $identifier

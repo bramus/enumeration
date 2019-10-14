@@ -152,4 +152,15 @@ class ComposedEnumerationTest extends TestCase
 	{
 		$this->assertEquals("The payload sent in a 200 response depends on the request method. For the methods defined by this specification, the intended meaning of the payload can be summarized as:\n	- GET a representation of the target resource\n	- HEAD the same representation as GET, but without the representation data\n	- POST a representation of the status of, or results obtained from, the action;\n	- PUT DELETE a representation of the status of the action;\n	- OPTIONS a representation of the communications options;\n	- TRACE a representation of the request message as received by the end server.\nAside from responses to CONNECT, a 200 response always has a payload, though an origin server MAY generate a payload body of zero length. If no payload is desired, an origin server ought to send 204 No Content instead. For CONNECT, no payload is allowed because the successful result is a tunnel, which begins immediately after the 200 response header section.\nA 200 response is cacheable by default; i.e., unless otherwise indicated by the method definition or explicit cache controls.", StatusCode::toDescription(new StatusCode()));
 	}
+
+	public function testDescriptions()
+	{
+		$descriptions = StatusCode::descriptions();
+
+		$this->assertIsArray($descriptions);
+		$this->assertCount(17, $descriptions);
+
+		$this->assertContains(StatusCode::toDescription(200), $descriptions);
+		$this->assertEquals(StatusCode::toDescription(200), $descriptions[200]);
+	}
 }

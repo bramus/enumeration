@@ -166,6 +166,17 @@ class EnumerationTest extends TestCase
 		$this->assertEquals('The first day of the week', Weekday::toDescription(new Weekday()));
 	}
 
+	public function testDescriptions()
+	{
+		$descriptions = Weekday::descriptions();
+
+		$this->assertIsArray($descriptions);
+		$this->assertCount(7, $descriptions);
+
+		$this->assertContains(Weekday::toDescription(Weekday::MONDAY), $descriptions);
+		$this->assertEquals(Weekday::toDescription(Weekday::MONDAY), $descriptions[Weekday::MONDAY]);
+	}
+
 	public function testToDescriptionForEnumerationWithNoComments()
 	{
 		$this->assertEquals('', TrafficLight::toDescription(TrafficLight::RED));
