@@ -2,7 +2,9 @@
 
 ## 1.next – ????.??.??
 
+## 1.3 - 2019.10.14
 
+- Added: `::descriptions()`/`::summaries()` _(@bramus)_
 
 ## 1.2 – 2019.05.13
 

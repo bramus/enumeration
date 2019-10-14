@@ -313,6 +313,15 @@ Weekday::toDescription($instance);
 // ~> 'The first day of the week.'
 ```
 
+It's also possible to get a list of all summaries/descriptions. An array with the Enum values as keys is returned
+
+```php
+$summaries = Weekday::summaries();
+// ~> [1 => 'Monday.', 2 => 'Tuesday.', …, 7 => 'Sunday.']
+
+$descriptions = Weekday::descriptions();
+// ~> [1 => 'The first day of the week', 2 => 'The second day of the week', …, 7 => 'The seventh day of the week']
+```
 
 ## Utility Classes
 
