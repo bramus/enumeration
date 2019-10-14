@@ -127,6 +127,17 @@ class ComposedEnumerationTest extends TestCase
 		$this->assertEquals('The request has succeeded.', StatusCode::toSummary(new StatusCode()));
 	}
 
+	public function testSummaries()
+	{
+		$summaries = StatusCode::summaries();
+
+		$this->assertIsArray($summaries);
+		$this->assertCount(17, $summaries);
+
+		$this->assertContains(StatusCode::toSummary(200), $summaries);
+		$this->assertEquals(StatusCode::toSummary(200), $summaries[(string) StatusCode::OK()]);
+	}
+
 	public function testToDescription()
 	{
 		$this->assertEquals("When the request contains an Expect header field that includes a 100-continue expectation, the 100 response indicates that the server wishes to receive the request payload body. The client ought to continue sending the request and discard the 100 response.\nIf the request did not contain an Expect header field containing the 100-continue expectation, the client can simply discard this interim response.", StatusCode::toDescription(100));

@@ -128,6 +128,17 @@ class EnumerationTest extends TestCase
 		$this->assertEquals('Monday.', Weekday::toSummary(new Weekday()));
 	}
 
+	public function testSummaries()
+	{
+		$summaries = Weekday::summaries();
+
+		$this->assertIsArray($summaries);
+		$this->assertCount(7, $summaries);
+
+		$this->assertContains(Weekday::toSummary(Weekday::MONDAY), $summaries);
+		$this->assertEquals(Weekday::toSummary(Weekday::MONDAY), $summaries[Weekday::MONDAY]);
+	}
+
 	public function testToSummaryForEnumerationWithNoComments()
 	{
 		$this->assertEquals('', TrafficLight::toSummary(TrafficLight::RED));

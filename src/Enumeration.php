@@ -212,6 +212,21 @@ abstract class Enumeration
 	}
 
 	/**
+	 * Lists all summaries for this Enumeration.
+	 *
+	 * @param bool $excludeDefault
+	 *
+	 * @return array
+	 */
+	public static function summaries($excludeDefault = true)
+	{
+		return array_combine(
+			Extractor::extractValues(get_called_class(), $excludeDefault),
+			Extractor::extractSummaries(get_called_class(), $excludeDefault)
+		);
+	}
+
+	/**
 	 * Gets the summary for an identifier.
 	 *
 	 * @param string $identifier
