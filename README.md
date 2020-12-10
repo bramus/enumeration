@@ -323,6 +323,27 @@ $descriptions = Weekday::descriptions();
 // ~> [1 => 'The first day of the week', 2 => 'The second day of the week', …, 7 => 'The seventh day of the week']
 ```
 
+## Comparing Values
+
+To compare a `Bramus\Enumeration\Enumeration` instance against a value, use `$instance->equals()`
+
+```php
+$instance = new Weekday(Weekday::MONDAY);
+
+$instance->equals(1);
+// ~> true
+```
+
+Comparing `Bramus\Enumeration\Enumeration` instances against other `Bramus\Enumeration\Enumeration` is also possible
+
+```php
+$instance = new Weekday(Weekday::MONDAY);
+$otherInstance = Weekday::MONDAY();
+
+$instance->equals($otherInstance);
+// ~> true
+```
+
 ## Utility Classes
 
 `bramus/enumeration` comes with 2 utility classes. Whilst you most likely don't need to use these directly, they might be of help:

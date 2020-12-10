@@ -2,6 +2,10 @@
 
 ## 1.next – ????.??.??
 
+## 1.4 – 2020.12.10
+
+- Added: `$obj->equals()` _(@bramus)_
+
 ## 1.3 - 2019.10.14
 
 - Added: `::descriptions()`/`::summaries()` _(@bramus)_

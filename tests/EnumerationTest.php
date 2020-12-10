@@ -181,4 +181,18 @@ class EnumerationTest extends TestCase
 	{
 		$this->assertEquals('', TrafficLight::toDescription(TrafficLight::RED));
 	}
+
+	public function testEqualsWithSimpleValue()
+	{
+		$instance = new Weekday(Weekday::MONDAY);
+		$this->assertEquals(true, $instance->equals(Weekday::MONDAY));
+		$this->assertEquals(false, $instance->equals(Weekday::TUESDAY));
+	}
+
+	public function testEqualsWithEnumeration()
+	{
+		$instance = new Weekday(Weekday::MONDAY);
+		$otherInstance = new Weekday(Weekday::MONDAY);
+		$this->assertEquals(true, $instance->equals($otherInstance));
+	}
 }

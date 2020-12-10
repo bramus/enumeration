@@ -111,6 +111,17 @@ abstract class Enumeration
 		return $this->description;
 	}
 
+	public function equals($value)
+	{
+		// It's an Enumeration? Call getValue()
+		if (is_a($value, self::class)) {
+			$value = $value->getValue();
+		}
+
+		// Compare 'm
+		return $this->getValue() === $value;
+	}
+
 	/**
 	 * Lists all identifiers for this Enumeration.
 	 *
